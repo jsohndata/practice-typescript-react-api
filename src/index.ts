@@ -1,18 +1,23 @@
 import express from "express";
 import cors from "cors";
+import "dotenv/config";
 //@ts-ignore
-import dotenv from "dotenv";
-//@ts-ignore
-import mongodb from "mongodb";
+import {MongoClient} from "mongodb";
 
-dotenv.config();
 const app = express();
-
 app.use(cors());
 app.use(express.json());
 
-app.post("/", (req,res) => {
+
+const client = new MongoClient(process.env.MONGO_URI);
+const db = client.db("practice");
+const collection = db.collection("ts-pratice");
+
+
+
+app.post("/", async (req,res) => {
   console.log(req.body);
+  const newDoc = await collection.insertOne(req.body);
   res.status(200).send("Hello Uniervse");
 })
 
