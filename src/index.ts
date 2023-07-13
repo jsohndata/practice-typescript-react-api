@@ -10,8 +10,8 @@ app.use(express.json());
 
 
 const client = new MongoClient(process.env.MONGO_URI);
-const db = client.db("practice");
-const collection = db.collection("ts-pratice");
+const db = client.db("c11-practice");
+const collection = db.collection("ts-practice");
 
 
 
